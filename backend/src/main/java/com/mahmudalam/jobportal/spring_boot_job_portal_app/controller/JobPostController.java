@@ -4,9 +4,7 @@ package com.mahmudalam.jobportal.spring_boot_job_portal_app.controller;
 import com.mahmudalam.jobportal.spring_boot_job_portal_app.interfaces.JobPostRepository;
 import com.mahmudalam.jobportal.spring_boot_job_portal_app.model.JobPostModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
@@ -29,5 +27,10 @@ public class JobPostController {
     public List<JobPostModel> getAllJobPosts(){
 
         return repo.findAll();
+    }
+
+    @PostMapping("/create-job-post")
+    public JobPostModel createJobPost(@RequestBody JobPostModel job_post){
+        return repo.save(job_post);
     }
 }

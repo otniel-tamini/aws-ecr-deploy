@@ -27,6 +27,7 @@ public class JobPostController {
 
     @GetMapping("/job-posts")
     public List<JobPostModel> getAllJobPosts(){
+
         return repo.findAll();
     }
 }

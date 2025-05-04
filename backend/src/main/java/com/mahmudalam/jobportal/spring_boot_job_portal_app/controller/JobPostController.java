@@ -2,6 +2,7 @@ package com.mahmudalam.jobportal.spring_boot_job_portal_app.controller;
 
 
 import com.mahmudalam.jobportal.spring_boot_job_portal_app.interfaces.JobPostRepository;
+import com.mahmudalam.jobportal.spring_boot_job_portal_app.interfaces.SearchRepository;
 import com.mahmudalam.jobportal.spring_boot_job_portal_app.model.JobPostModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class JobPostController {
     @Autowired
     JobPostRepository repo;
 
+    @Autowired
+    SearchRepository search_repo;
+
     @ApiIgnore
     @RequestMapping(value = "/")
     public void redirect(HttpServletResponse response) throws IOException {
@@ -25,8 +29,12 @@ public class JobPostController {
 
     @GetMapping("/job-posts")
     public List<JobPostModel> getAllJobPosts(){
-
         return repo.findAll();
+    }
+
+    @GetMapping("/job-posts/{text}")
+    public List<JobPostModel> search(@PathVariable String text){
+        return search_repo.findByText(text);
     }
 
     @PostMapping("/create-job-post")

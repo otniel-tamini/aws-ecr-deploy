@@ -111,7 +111,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-10 pt-24">
+    <div className="px-6 py-10 pt-24">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
         <h2 className="text-center text-2xl font-bold text-gray-800 mb-8">
           Jobs Count

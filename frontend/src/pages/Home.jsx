@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import heroImage from "/assets/job-portal-hero.avif";
 
 const Home = () => (
-  <div className="bg-peach min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-16 py-10">
+  <div className="flex flex-col md:flex-row items-center justify-center px-6 md:px-16 py-10 pt-24">
     
     {/* Left Section - hidden on small screens */}
     <div className="hidden md:block md:w-1/2">

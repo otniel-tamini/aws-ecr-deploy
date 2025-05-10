@@ -24,7 +24,7 @@ const Feed = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 px-4 py-10 flex flex-col items-center pt-24">
+    <div className="px-4 py-10 flex flex-col items-center pt-24">
       <h2 className="text-3xl font-bold mb-6">Job Posts</h2>
 
       {/* Search Bar */}

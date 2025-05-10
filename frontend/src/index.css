@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+  --color-peach: #fae7e0;
+}

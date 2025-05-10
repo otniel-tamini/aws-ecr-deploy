@@ -23,7 +23,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center space-x-2">
           <img src={logo} alt="Logo" className="w-8 h-8" />
           <span
-            className={`text-xl font-bold ${
+            className={`text-xl font-bold hidden sm:block ${
               scrolled ? "text-blue-600" : "text-sky-900"
             }`}
           >
@@ -38,7 +38,7 @@ const Navbar = () => {
               scrolled ? "text-blue-600" : "text-sky-900"
             } hover:text-orange-400 transition-colors`}
           >
-            Job Feed
+            <span className="hidden sm:inline">Job </span>Feed
           </Link>
           <Link
             to="/employer/create-job-post"

@@ -48,14 +48,6 @@ const Navbar = () => {
           >
             Create Job
           </Link>
-          <Link
-            to="/employer/dashboard"
-            className={`font-medium ${
-              scrolled ? "text-blue-600" : "text-sky-900"
-            } hover:text-orange-400 transition-colors`}
-          >
-            Dashboard
-          </Link>
         </div>
       </div>
     </nav>

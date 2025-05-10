@@ -111,10 +111,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-10">
+    <div className="min-h-screen bg-gray-100 px-6 py-10 pt-24">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">
-          Technology-wise Job Count (Accurate)
+        <h2 className="text-center text-2xl font-bold text-gray-800 mb-8">
+          Jobs Count
         </h2>
 
         <table className="w-full table-auto border border-gray-300">

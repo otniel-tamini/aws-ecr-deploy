@@ -46,7 +46,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-8 pt-24">
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-xl p-8">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Create Job Post

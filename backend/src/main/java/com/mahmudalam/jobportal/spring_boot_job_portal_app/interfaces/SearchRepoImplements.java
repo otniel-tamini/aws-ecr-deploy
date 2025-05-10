@@ -33,7 +33,8 @@ public class SearchRepoImplements implements SearchRepository {
         Document searchQuery = new Document("$text", new Document("$search", text));
         Document sortQuery = new Document("exp", -1);
 
-        try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).limit(5).iterator()) {
+        // try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).limit(5).iterator()) {
+        try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).iterator()) {
             while (cursor.hasNext()) {
                 jobPosts.add(converter.read(JobPostModel.class, cursor.next()));
             }

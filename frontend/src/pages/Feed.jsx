@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchJobs, searchJobs } from "../api/api";
 
 const Feed = () => {
   const [jobs, setJobs] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const inputRef = useRef(null);
   const jobsPerPage = 6;
 
   const loadJobs = async () => {
@@ -24,6 +25,9 @@ const Feed = () => {
   };
 
   useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
     loadJobs();
   }, []);
 
@@ -47,6 +51,7 @@ const Feed = () => {
       {/* Search Bar */}
       <div className="w-full max-w-xl flex gap-2 mb-10">
         <input
+          ref={inputRef}
           type="text"
           placeholder="Search job..."
           value={searchText}

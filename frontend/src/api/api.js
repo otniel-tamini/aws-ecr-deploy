@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:8080';
+const API_BASE = 'http://16.170.158.190:8080';
 
 export const fetchJobs = () => axios.get(`${API_BASE}/job-posts`);
 

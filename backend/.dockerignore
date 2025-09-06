@@ -1,0 +1,10 @@
+target
+.mvn
+.idea
+.project
+.classpath
+*.iml
+*.log
+.git
+Dockerfile
+README.md

@@ -8,6 +8,7 @@ import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.convert.MongoConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -22,21 +23,44 @@ public class SearchRepoImplements implements SearchRepository {
     @Autowired
     MongoConverter converter;
 
+    @Value("${spring.data.mongodb.database}")
+    private String databaseName;
+
     @Override
     public List<JobPostModel> findByText(String text) {
         final List<JobPostModel> jobPosts = new ArrayList<>();
 
-        MongoDatabase database = client.getDatabase("job_portal_db");
+        MongoDatabase database = client.getDatabase(databaseName);
         MongoCollection<Document> collection = database.getCollection("job_posts");
 
-        // Ensure text index exists: { profile: "text", techs: "text", desc: "text" }
-        Document searchQuery = new Document("$text", new Document("$search", text));
+        // Prefer text search when supported; otherwise fallback to regex OR query
         Document sortQuery = new Document("exp", -1);
+        boolean usedText = false;
+        try {
+            // Create text index if possible
+            collection.createIndex(new Document("profile", "text").append("techs", "text").append("desc", "text"));
+            Document searchQuery = new Document("$text", new Document("$search", text));
+            try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).iterator()) {
+                while (cursor.hasNext()) {
+                    jobPosts.add(converter.read(JobPostModel.class, cursor.next()));
+                }
+                usedText = true;
+            }
+        } catch (Exception ignored) {
+            // $text or index creation not supported (e.g., DocumentDB)
+        }
 
-        // try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).limit(5).iterator()) {
-        try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).iterator()) {
-            while (cursor.hasNext()) {
-                jobPosts.add(converter.read(JobPostModel.class, cursor.next()));
+        if (!usedText) {
+            Document regex = new Document("$regex", text).append("$options", "i");
+            Document searchQuery = new Document("$or", List.of(
+                    new Document("profile", regex),
+                    new Document("techs", regex),
+                    new Document("desc", regex)
+            ));
+            try (MongoCursor<Document> cursor = collection.find(searchQuery).sort(sortQuery).iterator()) {
+                while (cursor.hasNext()) {
+                    jobPosts.add(converter.read(JobPostModel.class, cursor.next()));
+                }
             }
         }
 

@@ -1,0 +1,111 @@
+name: CI/CD Backend API to ECS
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'backend/**'
+      - 'infra/terraform/**'
+      - '.github/workflows/backend-ecs.yml'
+  workflow_dispatch: {}
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION || 'eu-north-1' }}
+  ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY || 'aws-ecs-deploy-api' }}
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build-and-push:
+    name: Build & Push Docker Image
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.img.outputs.image }}
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: gha-backend-ecs
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Ensure ECR repository
+        run: |
+          aws ecr describe-repositories --repository-names "$ECR_REPOSITORY" >/dev/null 2>&1 || \
+          aws ecr create-repository --repository-name "$ECR_REPOSITORY" --image-scanning-configuration scanOnPush=true --region "$AWS_REGION"
+
+      - name: Build, tag, and push image
+        working-directory: backend
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Set image uri output
+        id: img
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+  deploy-ecs:
+    name: Update ECS Service
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      CLUSTER_NAME: ${{ vars.ECS_CLUSTER_NAME || 'job-portal-cluster' }}
+      SERVICE_NAME: ${{ vars.ECS_SERVICE_NAME || 'job-portal-api' }}
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: gha-backend-ecs
+
+      - name: Register new task definition revision
+        id: taskdef
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          FAMILY="job-portal-api"
+          # Get current task definition
+          TD_ARN=$(aws ecs describe-services --cluster "$CLUSTER_NAME" --services "$SERVICE_NAME" --query 'services[0].taskDefinition' --output text)
+          aws ecs describe-task-definition --task-definition "$TD_ARN" --query 'taskDefinition' > base.json
+          # Replace image
+          IMG="${{ needs.build-and-push.outputs.image }}"
+          jq '.containerDefinitions[0].image = env.IMG | del(.taskDefinitionArn,.revision,.status,.requiresAttributes,.compatibilities,.registeredAt,.registeredBy,.cpu,.memory)' base.json > new.json
+          # Keep cpu/memory/compatibilities from original
+          CPU=$(jq -r '.cpu' base.json)
+          MEM=$(jq -r '.memory' base.json)
+          REQ=$(jq -r '.requiresCompatibilities | @json' base.json)
+          EXEC_ROLE=$(jq -r '.executionRoleArn' base.json)
+          NET_MODE=$(jq -r '.networkMode' base.json)
+          FAMILY=$(jq -r '.family' base.json)
+          aws ecs register-task-definition \
+            --family "$FAMILY" \
+            --execution-role-arn "$EXEC_ROLE" \
+            --network-mode "$NET_MODE" \
+            --requires-compatibilities $(echo $REQ | jq -r '.[]') \
+            --cpu "$CPU" \
+            --memory "$MEM" \
+            --cli-input-json file://new.json \
+            --query 'taskDefinition.taskDefinitionArn' --output text > td_arn.txt
+          echo "td_arn=$(cat td_arn.txt)" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Update service to new task definition
+        run: |
+          aws ecs update-service --cluster "$CLUSTER_NAME" --service "$SERVICE_NAME" --task-definition "${{ steps.taskdef.outputs.td_arn }}" --force-new-deployment
+          aws ecs wait services-stable --cluster "$CLUSTER_NAME" --services "$SERVICE_NAME"

@@ -18,8 +18,9 @@ module "vpc" {
 	private_subnets = [for i in range(2) : cidrsubnet("10.10.0.0/16", 8, i)]
 	public_subnets  = [for i in range(2, 4) : cidrsubnet("10.10.0.0/16", 8, i)]
 
-	enable_nat_gateway = true
-	single_nat_gateway = true
+		enable_nat_gateway     = true
+		single_nat_gateway     = false
+		one_nat_gateway_per_az = true
 
 	enable_dns_support   = true
 	enable_dns_hostnames = true
@@ -160,13 +161,15 @@ resource "aws_docdb_cluster" "this" {
 	engine_version          = var.docdb_engine_version
 	backup_retention_period = 1
 	deletion_protection     = false
+	skip_final_snapshot     = true
 }
 
 resource "aws_docdb_cluster_instance" "this" {
-	count              = 1
+	count              = 2
 	identifier         = "${var.project}-docdb-${count.index}"
 	cluster_identifier = aws_docdb_cluster.this.id
 	instance_class     = var.docdb_instance_class
+	availability_zone  = element(slice(data.aws_availability_zones.available.names, 0, 2), count.index)
 }
 
 # Logs
@@ -213,7 +216,7 @@ resource "aws_ecs_service" "api" {
 	cluster         = aws_ecs_cluster.this.id
 	task_definition = aws_ecs_task_definition.api.arn
 	launch_type     = "FARGATE"
-	desired_count   = 1
+	desired_count   = 2
 
 	network_configuration {
 		subnets          = module.vpc.private_subnets

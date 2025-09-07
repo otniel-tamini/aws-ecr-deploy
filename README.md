@@ -1,240 +1,94 @@
-# 💼 Job Portal App - Java Spring Boot with REST APIs, ReactJS, MongoDB
+## Job Portal App — Learning deployment (based on Mahmud-Alam’s project)
 
-## 📌 Project Overview
-**Job Portal App** is a simple full-stack web application designed to help users browse job listings and create new job posts. It is built using **Java Spring Boot** for the backend, **ReactJS** for the frontend, and **MongoDB** for data persistence.
+This repository is a personal learning exercise to deploy a full‑stack app to AWS using containers, Terraform, and GitHub Actions.
 
-This project demonstrates how to create a modular and scalable application using a modern technology stack, implementing essential CRUD operations with pagination and keyword-based searching.
+Attribution: The application code (backend + frontend) is based on Mahmud Alam’s project “spring-boot-job-portal-app”. Original repository:
 
----
+- https://github.com/Mahmud-Alam/spring-boot-job-portal-app
 
-## 🚀 Features
-
-- 🔍 **Job Feed Page**: View all available job posts fetched from a local MongoDB database.
-- 🔎 **Search Functionality**: Filter job posts based on keywords like `Java`, `Python`, etc.
-- 📄 **Pagination**: Display 6 jobs per page with clickable page numbers for easy navigation.
-- 📝 **Create Job Post**: Submit new job listings through a form and store them in MongoDB.
+All application credit goes to the original author. I adapted the project for deployability and added cloud infrastructure and CI/CD around it.
 
 ---
 
-## 🛠️ Tech Stack
+### What I added on top
 
-### Backend
-- [Java Spring Boot](https://start.spring.io/)
-- Spring Web (REST APIs)
-- Spring Data MongoDB
-- Swagger-UI
-- Maven
-
-### Frontend
-- [ReactJS](https://reactjs.org/)
-- Axios for HTTP requests
-- React Router for navigation
-- TailwindCSS for styling
-
-### Database
-- [MongoDB](https://www.mongodb.com/) (running locally)
+- Containerization: backend Dockerfile and .dockerignore
+- Config externalization (Spring Boot): PORT, MONGODB_URI, MONGODB_DATABASE, ALLOWED_ORIGINS
+- CORS: global config driven by env
+- Search compatibility: fallback to regex when DocumentDB doesn’t support $text
+- Infrastructure as Code (Terraform):
+  - VPC with public/private subnets (2 AZ), NAT, security groups
+  - Application Load Balancer (HTTP 80)
+  - ECS Fargate cluster + service (ip target type)
+  - Amazon DocumentDB cluster + instances
+  - CloudWatch Logs
+- CI/CD (GitHub Actions):
+  - Backend: build Docker image → push to ECR → update ECS service
+  - Frontend: build Vite → sync dist/ to S3 (optional CloudFront invalidation)
 
 ---
 
-## 📸 Project Screenshots
+### Architecture (high level)
 
-### 🏠 Home Page
-The Landing Page of the Job Portal Platform.
-![Home Page](https://github.com/Mahmud-Alam/spring-boot-job-portal-app/blob/main/screenshots/01.png)
-
-### 📝 Job Creating Form Page
-`POST` - Create a new job
-![Job Creating Form Page](https://github.com/Mahmud-Alam/spring-boot-job-portal-app/blob/main/screenshots/02.png)
-
-### 💼 Job Listings
-`GET` - All job posts Listing here.
-![Job Listings](https://github.com/Mahmud-Alam/spring-boot-job-portal-app/blob/main/screenshots/03.png)
-
-### 🔍 Search Job Post by Keyword  
-`GET` - Search job listings by entering a keyword related to title, description, or company.  
-![Search Job](https://github.com/Mahmud-Alam/spring-boot-job-portal-app/blob/main/screenshots/04.png)
-
-### 🧪 Swagger UI  
-A developer-friendly interface to test and explore all RESTful APIs.  
-Access via: `/swagger-ui.html`
-![Swagger UI](https://github.com/Mahmud-Alam/spring-boot-job-portal-app/blob/main/screenshots/05.png)
-
-### ❌ 404 - Not Found Page  
-Displays a user-friendly message when an invalid URL is visited.  
-![404 Page](https://github.com/Mahmud-Alam/spring-boot-job-portal-app/blob/main/screenshots/06.png)
+- ALB (public) → ECS Fargate service (private subnets) → Spring Boot API
+- API connects to Amazon DocumentDB (Mongo-compatible)
+- Frontend static site hosted in S3 (optional CloudFront)
 
 ---
 
-## 🏗️ Project Structure
-### 🔙 Backend (Spring Boot)
+### Local development (brief)
 
-```
-job-portal-backend/
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com.mahmudalam.jobportal.spring_boot_job_portal_app
-│   │   │       ├── controller
-│   │   │       ├── interfaces
-│   │   │       ├── model
-│   │   │       └── SpringBootJobPortalAppApplication.java
-│   │   └── resources
-│   │       ├── application.properties
-│   │       ├── static/
-│   │       └── templates/
-│   └── test
-│       └── java
-│           └── com.mahmudalam.jobportal.spring_boot_job_portal_app
-├── .env
-└── pom.xml
+- Backend
+  - Java 17, Maven Wrapper is included: `./mvnw -DskipTests package`
+  - Config via `backend/src/main/resources/application.properties`
+  - Health: `/actuator/health`, Swagger: `/swagger-ui.html`
 
-```
-
-### 🌐 Frontend (ReactJS)
-
-```
-job-portal-frontend/
- ├── public/
- ├── src/
- │   ├── api/
- │   ├── components/
- │   ├── pages/
- │   ├── App.jsx
- │   └── main.jsx 
- ├── package.json
-
-```
+- Frontend
+  - Node 20 recommended: `npm ci && npm run dev` in `frontend/`
 
 ---
 
-## 🔧 Installation & Setup
+### CI/CD setup (GitHub Actions)
 
-### 📌 Prerequisites
-Ensure you have the following installed:
-- **Java 17+**
-- **Node.js & npm**
-- **MongoDB installed locally or access to MongoDB Atlas**
+Create an AWS IAM role assumable via GitHub OIDC and set these in the repo:
 
-### 🔽 Backend Setup
+- Secret
+  - `AWS_ROLE_ARN` — ARN of the IAM role for Actions
 
-```bash
-git clone https://github.com/Mahmud-Alam/spring-boot-job-portal-app.git
-cd spring-boot-job-portal-app
-cd backend
-```
+- Variables
+  - `AWS_REGION` (e.g., eu-north-1)
+  - `ECR_REPOSITORY` (e.g., aws-ecs-deploy-api)
+  - `ECS_CLUSTER_NAME` (e.g., job-portal-cluster)
+  - `ECS_SERVICE_NAME` (e.g., job-portal-api)
+  - `WEB_BUCKET_NAME` (S3 bucket for frontend)
+  - `CLOUDFRONT_DISTRIBUTION_ID` (optional)
 
-The Spring Boot app will start at **[http://localhost:8080](http://localhost:8080)**
+Workflows:
 
-
-#### 🧪 Configure Environment
-
-Edit `application.properties`:
-
-```properties
-spring.application.name=spring-boot-job-portal-app
-spring.data.mongodb.uri=mongodb://localhost:27017/job_portal_db
-spring.data.mongodb.database=job_portal_db
-```
-
-### 🌐 Frontend Setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-The React app will start at **[http://localhost:5173](http://localhost:5173)**
+- `.github/workflows/backend-ecs.yml` — builds/pushes the API image and rolls ECS
+- `.github/workflows/frontend-s3.yml` — builds the frontend and syncs to S3
 
 ---
 
-## 📘 API Documentation
+### Terraform (optional)
 
-Once the application is running, Swagger UI can be accessed at:
+The `infra/terraform` folder contains a reproducible stack for VPC/ALB/ECS/DocDB.
 
-```
-http://localhost:8080/swagger-ui.html
-```
+Basic flow:
+- `terraform init`
+- `terraform plan`
+- `terraform apply`
 
-It includes all endpoints, models, and schemas.
+Clean-up:
+- `terraform destroy` (DocumentDB is configured with `skip_final_snapshot = true` to allow teardown during learning)
 
----
-
-## 🧪 Testing
-
-Run unit and integration tests using:
-
-```bash
-# Maven
-mvn test
-
-# Gradle
-./gradlew test
-```
+Notes:
+- DocumentDB doesn’t support Mongo `$text`; the API falls back to case‑insensitive regex.
+- Costs apply (NAT, ALB, ECS, DocDB). Destroy when not in use.
 
 ---
 
-## 📜 API Endpoints
+### Credits & License
 
-### GET `/job-posts`
-### GET `/job-posts/{text}`
-
-* Fetch all jobs with optional keyword filtering and pagination.
-* Supports query parameters:
-
-  * `keyword`: Search term
-  * `page`: Page number (starting from 1)
-  * `limit`: Number of jobs per page (default: 6)
-
-### POST `/create-job-post`
-
-* Create a new job post
-* Accepts JSON payload:
-
-```json
-{
-  "profile": "Java Spring Boot Developer",
-  "desc": "We are hiring Java Spring Boot developers!",
-  "exp": 2,
-  "techs": ["Java", "Spring Boot"]
-}
-```
-
----
-
-## 🔮 Future Improvements
-
-* Add authentication (JWT-based)
-* Enable role-based access (Job Seeker vs Employer)
-* Add job details page
-* Improve form validation and error handling
-* Deploy on cloud (Render, vercel, or Heroku)
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/NewFeature`)
-3. Commit your changes (`git commit -m 'Add some new Features'`)
-4. Push to the branch (`git push origin feature/NewFeature`)
-5. Open a Pull Request
-
----
-
-## 🏆 Author
-**Mahmud Alam**  
-- 🌍 Portfolio: [Mahmud Alam](https://mahmudalam.com/)  
-- 📧 Email: mahmudalam.official@gmail.com  
-- 🔗 **GitHub:** [GitHub](https://github.com/Mahmud-Alam)  
-- 🔗 **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/mahmudalamofficial/)  
-
----
-
-## 🎉 Acknowledgments
-- Inspired by Job Portal platforms.
-- Thanks to the **Java Spring Boot Community** for extensive documentation and support.
-
-#### Happy coding! 🚀
+- Original application: Mahmud Alam — https://github.com/Mahmud-Alam/spring-boot-job-portal-app
+- This repository adds infrastructure and CI/CD scaffolding for learning purposes only.

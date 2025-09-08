@@ -8,8 +8,7 @@ data "aws_availability_zones" "available" {
 
 # VPC
 module "vpc" {
-	source  = "terraform-aws-modules/vpc/aws"
-	version = "5.7.1"
+	source  = "github.com/terraform-aws-modules/terraform-aws-vpc?ref=v5.7.1"
 
 	name = var.project
 	cidr = "10.10.0.0/16"
@@ -101,7 +100,8 @@ resource "aws_lb_target_group" "api" {
 	vpc_id   = module.vpc.vpc_id
 	target_type = "ip"
 	health_check {
-		path                = "/actuator/health"
+		# Use liveness group so DB readiness doesn't fail ALB health
+		path                = "/actuator/health/liveness"
 		healthy_threshold   = 2
 		unhealthy_threshold = 2
 		timeout             = 5
@@ -197,7 +197,7 @@ resource "aws_ecs_task_definition" "api" {
 				{ name = "SERVER_PORT", value = "8080" },
 				{ name = "SPRING_DATA_MONGODB_DATABASE", value = "job_portal_db" },
 				{ name = "APP_CORS_ALLOWED_ORIGINS", value = var.allowed_origins },
-				{ name = "SPRING_DATA_MONGODB_URI", value = "mongodb://${var.docdb_username}:${var.docdb_password}@${aws_docdb_cluster.this.endpoint}:27017/job_portal_db?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false" }
+				{ name = "SPRING_DATA_MONGODB_URI", value = "mongodb://${var.docdb_username}:${var.docdb_password}@${aws_docdb_cluster.this.endpoint}:27017/job_portal_db?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false&tlsAllowInvalidHostnames=true" }
 			]
 			logConfiguration = {
 				logDriver = "awslogs"

@@ -1,105 +1,113 @@
 <mxfile host="app.diagrams.net" modified="2025-09-08T00:00:00.000Z" agent="drawio-desktop" version="22.1.0" type="device">
   <diagram id="cicd" name="CI-CD Cross-Account">
-    <mxGraphModel dx="1480" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
 
         <!-- Left: Tools Account -->
-        <mxCell id="toolsBox" value="Tools Account" style="swimlane;fontStyle=1;rounded=1;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="30" y="40" width="340" height="480" as="geometry"/>
+        <mxCell id="toolsBox" value="Tools Account" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontColor=#000000;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="280" height="380" as="geometry"/>
         </mxCell>
 
         <!-- AWS IAM User -->
         <mxCell id="iamUser" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.iam;fillColor=#759C3E;gradientColor=none;" vertex="1" parent="toolsBox">
-          <mxGeometry x="50" y="50" width="57" height="63" as="geometry"/>
+          <mxGeometry x="50" y="40" width="57" height="63" as="geometry"/>
         </mxCell>
-        <mxCell id="iamLabel" value="AWS IAM User" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="toolsBox">
-          <mxGeometry x="35" y="120" width="87" height="20" as="geometry"/>
-        </mxCell>
-
-        <!-- GitHub Repo -->
-        <mxCell id="git" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn-icons-png.flaticon.com/512/25/25231.png" vertex="1" parent="toolsBox">
-          <mxGeometry x="60" y="160" width="48" height="48" as="geometry"/>
-        </mxCell>
-        <mxCell id="gitLabel" value="GitHub Repo" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="toolsBox">
-          <mxGeometry x="40" y="215" width="88" height="20" as="geometry"/>
+        <mxCell id="iamLabel" value="AWS IAM User" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="toolsBox">
+          <mxGeometry x="35" y="110" width="87" height="20" as="geometry"/>
         </mxCell>
 
         <!-- GitHub Actions -->
         <mxCell id="gha" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.codepipeline;fillColor=#759C3E;gradientColor=none;" vertex="1" parent="toolsBox">
-          <mxGeometry x="170" y="150" width="76.5" height="93" as="geometry"/>
+          <mxGeometry x="50" y="150" width="76.5" height="93" as="geometry"/>
         </mxCell>
-        <mxCell id="ghaLabel" value="GitHub Actions\nCICD Workflow" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="toolsBox">
-          <mxGeometry x="155" y="250" width="107" height="30" as="geometry"/>
+        <mxCell id="ghaLabel" value="GitHub Actions\nCICD Workflow" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="toolsBox">
+          <mxGeometry x="35" y="250" width="107" height="30" as="geometry"/>
         </mxCell>
 
-        <!-- AWS STS -->
+        <!-- STS -->
         <mxCell id="sts" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.sts;fillColor=#759C3E;gradientColor=none;" vertex="1" parent="toolsBox">
-          <mxGeometry x="150" y="320" width="60" height="72" as="geometry"/>
+          <mxGeometry x="170" y="150" width="60" height="72" as="geometry"/>
         </mxCell>
-        <mxCell id="stsLabel" value="STS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="toolsBox">
-          <mxGeometry x="150" y="400" width="60" height="20" as="geometry"/>
+        <mxCell id="stsLabel" value="STS" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="toolsBox">
+          <mxGeometry x="170" y="230" width="60" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- GitHub repo icon at bottom -->
+        <mxCell id="git" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn-icons-png.flaticon.com/512/25/25231.png" vertex="1" parent="toolsBox">
+          <mxGeometry x="40" y="300" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="gitLabel" value="GitHub Repo" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="toolsBox">
+          <mxGeometry x="20" y="345" width="80" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Git Push label -->
+        <mxCell id="gitPushIcon" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn-icons-png.flaticon.com/512/2111/2111432.png" vertex="1" parent="toolsBox">
+          <mxGeometry x="120" y="305" width="30" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="gitPushLabel" value="Git Push" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" vertex="1" parent="toolsBox">
+          <mxGeometry x="105" y="340" width="60" height="20" as="geometry"/>
         </mxCell>
 
         <!-- Right: Target Account -->
-        <mxCell id="targetBox" value="Target Account" style="swimlane;fontStyle=1;rounded=1;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="400" y="40" width="1160" height="520" as="geometry"/>
+        <mxCell id="targetBox" value="Target Account" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontColor=#000000;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="360" y="60" width="1200" height="520" as="geometry"/>
         </mxCell>
 
         <!-- Cross Account Role -->
-        <mxCell id="role" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.iam_role;fillColor=#759C3E;gradientColor=none;" vertex="1" parent="targetBox">
-          <mxGeometry x="50" y="60" width="60" height="60" as="geometry"/>
+        <mxCell id="role" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.iam_role;fillColor=#F58534;gradientColor=none;" vertex="1" parent="targetBox">
+          <mxGeometry x="60" y="60" width="60" height="60" as="geometry"/>
         </mxCell>
-        <mxCell id="roleLabel" value="Cross Account\nRole" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="targetBox">
-          <mxGeometry x="35" y="130" width="90" height="30" as="geometry"/>
+        <mxCell id="roleLabel" value="Cross Account\nRole" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="targetBox">
+          <mxGeometry x="45" y="130" width="90" height="30" as="geometry"/>
         </mxCell>
 
         <!-- CloudFormation -->
         <mxCell id="cfn" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.cloudformation;fillColor=#F58534;gradientColor=none;" vertex="1" parent="targetBox">
-          <mxGeometry x="200" y="40" width="76.5" height="93" as="geometry"/>
+          <mxGeometry x="220" y="40" width="76.5" height="93" as="geometry"/>
         </mxCell>
-        <mxCell id="cfnLabel" value="AWS\nCloudFormation" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="targetBox">
-          <mxGeometry x="185" y="140" width="107" height="30" as="geometry"/>
+        <mxCell id="cfnLabel" value="AWS\nCloudFormation" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="targetBox">
+          <mxGeometry x="205" y="140" width="107" height="30" as="geometry"/>
         </mxCell>
 
         <!-- API Gateway -->
         <mxCell id="apigw" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.api_gateway;fillColor=#F58534;gradientColor=none;" vertex="1" parent="targetBox">
-          <mxGeometry x="400" y="40" width="76.5" height="93" as="geometry"/>
+          <mxGeometry x="580" y="40" width="76.5" height="93" as="geometry"/>
         </mxCell>
-        <mxCell id="apigwLabel" value="API Gateway" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="targetBox">
-          <mxGeometry x="395" y="140" width="86.5" height="20" as="geometry"/>
+        <mxCell id="apigwLabel" value="API Gateway" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="targetBox">
+          <mxGeometry x="575" y="140" width="86.5" height="20" as="geometry"/>
         </mxCell>
 
         <!-- S3 CDK Staging Bucket -->
         <mxCell id="s3" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.s3;fillColor=#E05243;gradientColor=none;" vertex="1" parent="targetBox">
-          <mxGeometry x="340" y="230" width="76.5" height="93" as="geometry"/>
+          <mxGeometry x="400" y="230" width="76.5" height="93" as="geometry"/>
         </mxCell>
-        <mxCell id="s3Label" value="CDK Staging\nBucket" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="targetBox">
-          <mxGeometry x="335" y="330" width="86.5" height="30" as="geometry"/>
+        <mxCell id="s3Label" value="CDK Staging\nBucket" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="targetBox">
+          <mxGeometry x="395" y="330" width="86.5" height="30" as="geometry"/>
         </mxCell>
 
         <!-- Lambda -->
         <mxCell id="lambda" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.lambda;fillColor=#F58534;gradientColor=none;" vertex="1" parent="targetBox">
-          <mxGeometry x="520" y="40" width="69" height="72" as="geometry"/>
+          <mxGeometry x="720" y="40" width="69" height="72" as="geometry"/>
         </mxCell>
-        <mxCell id="lambdaLabel" value="Lambda" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;" vertex="1" parent="targetBox">
-          <mxGeometry x="520" y="120" width="69" height="20" as="geometry"/>
+        <mxCell id="lambdaLabel" value="Lambda" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=0;fontSize=10;" vertex="1" parent="targetBox">
+          <mxGeometry x="720" y="120" width="69" height="20" as="geometry"/>
         </mxCell>
 
-        <!-- Step indicators like in your example -->
+        <!-- Step indicators with better positioning -->
         <mxCell id="step2" value="2" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="370" y="350" width="30" height="30" as="geometry"/>
+          <mxGeometry x="330" y="190" width="30" height="30" as="geometry"/>
         </mxCell>
         <mxCell id="step2Label" value="Assume\nRole" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="350" y="385" width="70" height="25" as="geometry"/>
+          <mxGeometry x="310" y="225" width="70" height="25" as="geometry"/>
         </mxCell>
 
         <mxCell id="step3" value="3" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="400" y="180" width="30" height="30" as="geometry"/>
+          <mxGeometry x="500" y="180" width="30" height="30" as="geometry"/>
         </mxCell>
         <mxCell id="step3Label" value="Create CF Stack" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="360" y="215" width="110" height="25" as="geometry"/>
+          <mxGeometry x="460" y="215" width="110" height="25" as="geometry"/>
         </mxCell>
 
         <mxCell id="step4" value="4" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
@@ -109,50 +117,37 @@
           <mxGeometry x="105" y="485" width="140" height="30" as="geometry"/>
         </mxCell>
 
-        <!-- Connections -->
-        <!-- Git Push -->
-        <mxCell id="edge1" edge="1" parent="1" source="git" target="gha" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <!-- GitHub Actions to STS -->
-        <mxCell id="edge2" edge="1" parent="1" source="gha" target="sts" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <!-- STS to IAM Role -->
-        <mxCell id="edge3" edge="1" parent="1" source="sts" target="role" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <!-- Role to CloudFormation -->
-        <mxCell id="edge4" edge="1" parent="1" source="role" target="cfn" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <!-- CloudFormation creates resources -->
-        <mxCell id="edge5" edge="1" parent="1" source="cfn" target="apigw" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <mxCell id="edge6" edge="1" parent="1" source="cfn" target="s3" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <mxCell id="edge7" edge="1" parent="1" source="apigw" target="lambda" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-
-        <!-- Git Push indicator at bottom -->
-        <mxCell id="gitPush" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn-icons-png.flaticon.com/512/25/25231.png" vertex="1" parent="1">
-          <mxGeometry x="30" y="570" width="32" height="32" as="geometry"/>
-        </mxCell>
-        <mxCell id="gitPushLabel" value="Git Push" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="10" y="605" width="72" height="20" as="geometry"/>
-        </mxCell>
-
         <mxCell id="step1" value="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fontColor=#ffffff;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="75" y="570" width="30" height="30" as="geometry"/>
+          <mxGeometry x="165" y="400" width="30" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Connections with proper arrows -->
+        <mxCell id="edge1" edge="1" parent="1" source="git" target="gha" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#d79b00;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge2" edge="1" parent="1" source="gha" target="sts" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#d79b00;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge3" edge="1" parent="1" source="sts" target="role" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#d79b00;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge4" edge="1" parent="1" source="role" target="cfn" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#82b366;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge5" edge="1" parent="1" source="cfn" target="apigw" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#82b366;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge6" edge="1" parent="1" source="cfn" target="s3" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#82b366;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="edge7" edge="1" parent="1" source="apigw" target="lambda" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#82b366;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry"/>
         </mxCell>
 
       </root>

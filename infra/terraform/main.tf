@@ -217,6 +217,7 @@ resource "aws_ecs_service" "api" {
 	task_definition = aws_ecs_task_definition.api.arn
 	launch_type     = "FARGATE"
 	desired_count   = 2
+	health_check_grace_period_seconds = 60
 
 	network_configuration {
 		subnets          = module.vpc.private_subnets

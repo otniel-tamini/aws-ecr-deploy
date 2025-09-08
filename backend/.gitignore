@@ -33,5 +33,7 @@ build/
 .vscode/
 
 ### MY ###
-application.properties
+# Ignore only the root-level properties file, keep src/main/resources one tracked
+/application.properties
+!src/main/resources/application.properties
 .env

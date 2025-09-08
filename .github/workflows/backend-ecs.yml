@@ -84,7 +84,11 @@ jobs:
           TD_ARN=$(aws ecs describe-services --cluster "$CLUSTER_NAME" --services "$SERVICE_NAME" --query 'services[0].taskDefinition' --output text)
           aws ecs describe-task-definition --task-definition "$TD_ARN" --query 'taskDefinition' > base.json
           # Replace image
-          IMG="${{ needs.build-and-push.outputs.image }}"
+          export IMG="${{ needs.build-and-push.outputs.image }}"
+          if [ -z "$IMG" ] || [ "$IMG" = "null" ]; then
+            echo "::error::Image output from build job is empty."
+            exit 1
+          fi
           jq '.containerDefinitions[0].image = env.IMG | del(.taskDefinitionArn,.revision,.status,.requiresAttributes,.compatibilities,.registeredAt,.registeredBy,.cpu,.memory)' base.json > new.json
           # Keep cpu/memory/compatibilities from original
           CPU=$(jq -r '.cpu' base.json)

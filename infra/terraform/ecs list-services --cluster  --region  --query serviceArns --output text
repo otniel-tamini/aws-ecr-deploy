@@ -1,0 +1,591 @@
+{
+    "service": {
+        "serviceArn": "arn:aws:ecs:eu-north-1:501123610449:service/job-portal-cluster/job-portal-api",
+        "serviceName": "job-portal-api",
+        "clusterArn": "arn:aws:ecs:eu-north-1:501123610449:cluster/job-portal-cluster",
+        "loadBalancers": [
+            {
+                "targetGroupArn": "arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486",
+                "containerName": "api",
+                "containerPort": 8080
+            }
+        ],
+        "serviceRegistries": [],
+        "status": "ACTIVE",
+        "desiredCount": 0,
+        "runningCount": 2,
+        "pendingCount": 0,
+        "launchType": "FARGATE",
+        "platformVersion": "LATEST",
+        "platformFamily": "Linux",
+        "taskDefinition": "arn:aws:ecs:eu-north-1:501123610449:task-definition/job-portal-api:7",
+        "deploymentConfiguration": {
+            "deploymentCircuitBreaker": {
+                "enable": false,
+                "rollback": false
+            },
+            "maximumPercent": 200,
+            "minimumHealthyPercent": 100,
+            "strategy": "ROLLING",
+            "bakeTimeInMinutes": 0
+        },
+        "deployments": [
+            {
+                "id": "ecs-svc/5303553084245982281",
+                "status": "PRIMARY",
+                "taskDefinition": "arn:aws:ecs:eu-north-1:501123610449:task-definition/job-portal-api:7",
+                "desiredCount": 2,
+                "pendingCount": 0,
+                "runningCount": 2,
+                "failedTasks": 4,
+                "createdAt": "2025-09-08T11:19:03.222000+00:00",
+                "updatedAt": "2025-09-08T11:20:36.329000+00:00",
+                "launchType": "FARGATE",
+                "platformVersion": "1.4.0",
+                "platformFamily": "Linux",
+                "networkConfiguration": {
+                    "awsvpcConfiguration": {
+                        "subnets": [
+                            "subnet-04767bcfd1d077148",
+                            "subnet-0a4327600eb582d46"
+                        ],
+                        "securityGroups": [
+                            "sg-01be21c061c80e5c5"
+                        ],
+                        "assignPublicIp": "DISABLED"
+                    }
+                },
+                "rolloutState": "IN_PROGRESS",
+                "rolloutStateReason": "ECS deployment ecs-svc/5303553084245982281 in progress."
+            }
+        ],
+        "roleArn": "arn:aws:iam::501123610449:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS",
+        "events": [
+            {
+                "id": "aaa656dc-fad5-48af-9dff-b1455b778411",
+                "createdAt": "2025-09-08T11:29:21.965000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/5303553084245982281) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "c5452fd3-fe1f-4744-804f-084aa30b5ba4",
+                "createdAt": "2025-09-08T11:29:21.939000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "ffd90a55-03cc-44f1-93c8-cfaf9f9ef16b",
+                "createdAt": "2025-09-08T11:29:11.439000+00:00",
+                "message": "(service job-portal-api) deregistered 2 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "ac408387-3d95-4229-bb13-37432901b6f1",
+                "createdAt": "2025-09-08T11:29:11.374000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/5303553084245982281) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "5ff72322-1fc2-4664-97b4-5752e07c189f",
+                "createdAt": "2025-09-08T11:29:11.368000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "decc2ca0-5b34-4ec2-8a01-11956d5afdbb",
+                "createdAt": "2025-09-08T11:29:09.682000+00:00",
+                "message": "(service job-portal-api) has stopped 2 running tasks: (task b63f906184c241219e74c14154622c86) (task 84444e650b3149469747d15f053e73e3)."
+            },
+            {
+                "id": "f9a3c722-90b7-44eb-a125-c593eea9729f",
+                "createdAt": "2025-09-08T11:29:09.587000+00:00",
+                "message": "(service job-portal-api) (task 84444e650b3149469747d15f053e73e3) (port 8080) is unhealthy in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486) due to (reason Request timed out)."
+            },
+            {
+                "id": "86714cb4-6006-44d0-a0a2-b965e936fead",
+                "createdAt": "2025-09-08T11:29:09.586000+00:00",
+                "message": "(service job-portal-api) (task b63f906184c241219e74c14154622c86) (port 8080) is unhealthy in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486) due to (reason Request timed out)."
+            },
+            {
+                "id": "9416ea20-8f70-457d-8263-b5c7894c5d86",
+                "createdAt": "2025-09-08T11:28:26.012000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "8337edfc-aa30-4e21-8b96-44ccc4fc6307",
+                "createdAt": "2025-09-08T11:28:04.478000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task be5a9eb6a866461c9851eb7b5490dd63). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "a649c5a5-7be7-4d72-9b19-5340c291b9a9",
+                "createdAt": "2025-09-08T11:27:55.039000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 1e63aada8181447e8882ac651c77c69e). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "08fae5aa-88e1-4d88-b98c-20ae7256e4c3",
+                "createdAt": "2025-09-08T11:22:16.819000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "4a51b949-d9d7-428e-8757-baf353df33c0",
+                "createdAt": "2025-09-08T11:21:55.172000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task b63f906184c241219e74c14154622c86)."
+            },
+            {
+                "id": "d786c05f-a227-488a-8f9d-6c98b58ecdbd",
+                "createdAt": "2025-09-08T11:21:43.845000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "7539bf68-8c4d-4005-829c-0568433e3c52",
+                "createdAt": "2025-09-08T11:21:43.788000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/5303553084245982281) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "6a41747b-8f5e-4fed-a205-d5115964f1cf",
+                "createdAt": "2025-09-08T11:21:43.761000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "f63a0d8f-264f-4db4-819e-1bfa7a2f1bd5",
+                "createdAt": "2025-09-08T11:21:41.861000+00:00",
+                "message": "(service job-portal-api) has stopped 1 running tasks: (task e4a9df15cc1343d8a5018fdcb6e26b47)."
+            },
+            {
+                "id": "e6524458-9e42-443a-b8b1-98ec01955fb0",
+                "createdAt": "2025-09-08T11:21:41.815000+00:00",
+                "message": "(service job-portal-api) (task e4a9df15cc1343d8a5018fdcb6e26b47) (port 8080) is unhealthy in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486) due to (reason Request timed out)."
+            },
+            {
+                "id": "9e8a2a16-155d-40f5-915f-f9d207984c46",
+                "createdAt": "2025-09-08T11:21:31.355000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "08df8f4e-2100-47c0-87da-dd99307e7b6f",
+                "createdAt": "2025-09-08T11:21:31.284000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/5303553084245982281) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "d0e0f08c-96ba-4254-a2a8-dd5320722c3c",
+                "createdAt": "2025-09-08T11:21:31.279000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "81822946-7312-4fa9-999c-48db05abbd2b",
+                "createdAt": "2025-09-08T11:21:21.666000+00:00",
+                "message": "(service job-portal-api) has stopped 1 running tasks: (task 0175ebf117d640089b07991ec87cd35b)."
+            },
+            {
+                "id": "9fd7c569-3f3b-4cec-a7e2-e4e900431b11",
+                "createdAt": "2025-09-08T11:21:21.619000+00:00",
+                "message": "(service job-portal-api) (task 0175ebf117d640089b07991ec87cd35b) (port 8080) is unhealthy in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486) due to (reason Request timed out)."
+            },
+            {
+                "id": "0d36a616-dca7-4725-bac1-89285b643238",
+                "createdAt": "2025-09-08T11:21:21.540000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "29c9d77a-918d-405e-92c5-98d9c9268cb1",
+                "createdAt": "2025-09-08T11:20:48.807000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 84444e650b3149469747d15f053e73e3). Amazon ECS replaced 1 tasks due to an unhealthy status."
+            },
+            {
+                "id": "a228abac-6f5c-4770-8535-c55ddf93f4d4",
+                "createdAt": "2025-09-08T11:20:38.394000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "2172a72b-1ba3-4fc6-9cf8-9342a3e9d132",
+                "createdAt": "2025-09-08T11:20:38.320000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/0774478469415758129) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "ae833399-4611-4dd7-a15d-505fbbe98dee",
+                "createdAt": "2025-09-08T11:20:38.314000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "19b59911-dc69-4fea-9e19-a6351756430e",
+                "createdAt": "2025-09-08T11:20:37.092000+00:00",
+                "message": "(service job-portal-api) has stopped 1 running tasks: (task bf5ad5a16bd14144a1fb65339591076f)."
+            },
+            {
+                "id": "5563f605-34b3-4480-8b7f-eeb028786710",
+                "createdAt": "2025-09-08T11:20:37.042000+00:00",
+                "message": "(service job-portal-api) (task bf5ad5a16bd14144a1fb65339591076f) (port 8080) is unhealthy in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486) due to (reason Request timed out)."
+            },
+            {
+                "id": "1c2394d7-924a-4822-92db-9705a0704110",
+                "createdAt": "2025-09-08T11:20:04.373000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "d3752d46-0d3c-489d-92f7-5129a553bde6",
+                "createdAt": "2025-09-08T11:19:53.902000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task e4a9df15cc1343d8a5018fdcb6e26b47)."
+            },
+            {
+                "id": "11a3556f-f639-43cb-b7f5-208d11d79c15",
+                "createdAt": "2025-09-08T11:19:32.085000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 0175ebf117d640089b07991ec87cd35b)."
+            },
+            {
+                "id": "91c1fba0-5faf-4503-8676-537e8f3ec44a",
+                "createdAt": "2025-09-08T11:16:57.961000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "02250d80-dc30-444e-9098-57c199e510e5",
+                "createdAt": "2025-09-08T11:16:57.871000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/2969183178841294701) has begun draining connections on 2 tasks."
+            },
+            {
+                "id": "da742467-b5a9-4760-a114-ab928effe647",
+                "createdAt": "2025-09-08T11:16:57.865000+00:00",
+                "message": "(service job-portal-api) deregistered 2 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "953f9936-1147-410a-a44a-fa80cc78e887",
+                "createdAt": "2025-09-08T11:16:47.949000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "2c40961f-b0b5-464f-bc58-201c3b7f105f",
+                "createdAt": "2025-09-08T11:16:27.696000+00:00",
+                "message": "(service job-portal-api) registered 2 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "1b38107e-5174-44bb-86a2-8648ed5e5f7f",
+                "createdAt": "2025-09-08T11:16:03.713000+00:00",
+                "message": "(service job-portal-api) has started 2 tasks: (task 8f62263c04af46df8f5bd9db8b7b9746) (task 973e93f149694466a6c3610340e4e28d)."
+            },
+            {
+                "id": "8c505108-49a1-4698-bdde-46922beab518",
+                "createdAt": "2025-09-08T11:15:41.957000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "bd65c4e7-cbff-4f77-b44a-07df567cf04b",
+                "createdAt": "2025-09-08T11:15:41.882000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/2969183178841294701) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "95633d36-86e1-4bf1-8938-99021c090184",
+                "createdAt": "2025-09-08T11:15:41.877000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "8fa9dbb5-efb3-4316-9406-3f5e8dc8b1b5",
+                "createdAt": "2025-09-08T11:15:22.214000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "18249fcf-1300-42d6-a4e0-cd21638a051f",
+                "createdAt": "2025-09-08T11:14:59.977000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task f50518ec475542f0a9c0b520f38e152b)."
+            },
+            {
+                "id": "12671f62-4e72-4d6f-8eb3-04883fb6f484",
+                "createdAt": "2025-09-08T11:10:47.085000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "bf02f19d-5466-4211-afd2-7c327158ecd3",
+                "createdAt": "2025-09-08T11:10:47.012000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/2969183178841294701) has begun draining connections on 2 tasks."
+            },
+            {
+                "id": "b7af3b79-0145-4de3-a857-58972ce3a206",
+                "createdAt": "2025-09-08T11:10:47.007000+00:00",
+                "message": "(service job-portal-api) deregistered 2 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "190b2af8-2bd2-4270-a1cf-ea954f138e71",
+                "createdAt": "2025-09-08T11:10:36.985000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "f55578c4-7e25-41b6-bf55-8b80eb31c277",
+                "createdAt": "2025-09-08T11:10:15.175000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "de89e31c-6abe-4210-a2b0-3dce99861cb8",
+                "createdAt": "2025-09-08T11:09:53.441000+00:00",
+                "message": "(service job-portal-api) has started 2 tasks: (task 4c4d07e06ab544aea7d191a32d0b7cd2) (task 5bb0d81bf448413a9fdb377cf4162169)."
+            },
+            {
+                "id": "07783574-6587-48bc-ba95-0b38175fe07c",
+                "createdAt": "2025-09-08T11:09:42.078000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "df0f98f4-34d0-43fe-919f-dd20174331e0",
+                "createdAt": "2025-09-08T11:09:41.981000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/2969183178841294701) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "86b8ac96-e5cb-4ac1-a9ce-f6ca90ca123d",
+                "createdAt": "2025-09-08T11:09:41.976000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "65aa3202-d992-4fbf-b095-66fedcfc03bc",
+                "createdAt": "2025-09-08T11:09:10.981000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "3f4a25e5-4922-4a9a-8f9e-14b9011b88a3",
+                "createdAt": "2025-09-08T11:08:47.347000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 491c890b0c3941f99f2a356de87bc861)."
+            },
+            {
+                "id": "f97b6ba3-eb25-45fc-822c-aed25b188c9f",
+                "createdAt": "2025-09-08T11:08:46.466000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "872af5b3-35a7-4c26-9605-ac2f164c6779",
+                "createdAt": "2025-09-08T11:08:36.201000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "7771bd4b-7b08-45a5-b12a-ecb7108fbfbd",
+                "createdAt": "2025-09-08T11:08:16.328000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "100c0e81-f2a9-4e4f-9a9f-55e1f0e0b3de",
+                "createdAt": "2025-09-08T11:07:54.185000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task ca34204d7cd2418884c61e31b1f8c68a)."
+            },
+            {
+                "id": "e9d3941a-3238-402e-8440-113784698b71",
+                "createdAt": "2025-09-08T11:04:47.292000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "fe9b284a-1d4e-4f8d-9805-856cef45edf6",
+                "createdAt": "2025-09-08T11:04:47.204000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "4aecfb5b-178d-4ae9-ba96-ccce50ab3837",
+                "createdAt": "2025-09-08T11:04:47.199000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "cbea1256-72da-4bcc-a9f4-f7a0f9636140",
+                "createdAt": "2025-09-08T11:04:24.728000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "9a1165f9-f6eb-4cfa-9538-495a28842b4d",
+                "createdAt": "2025-09-08T11:03:54.370000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task e6c9397054c14a10885e98aa758a82fc)."
+            },
+            {
+                "id": "e68d9b6c-4661-4f60-8d2a-de560fa498d9",
+                "createdAt": "2025-09-08T11:03:40.718000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "20e37b99-419d-4d5d-a64f-6c036cf96a70",
+                "createdAt": "2025-09-08T11:03:31.117000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "8e2fe3c1-06ea-4f8a-bce8-886c6c50b964",
+                "createdAt": "2025-09-08T11:03:08.861000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "04de526f-002d-4eea-bc37-0518536ffe47",
+                "createdAt": "2025-09-08T11:02:38.249000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task a49deebec3df46f6b63895f958abd642)."
+            },
+            {
+                "id": "49169aa1-f0e7-47e1-894d-0b264cfcb3bf",
+                "createdAt": "2025-09-08T11:02:35.698000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "ac82f0c6-1a74-46cc-842c-2da64191383f",
+                "createdAt": "2025-09-08T11:02:35.607000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "0a21ff2d-95f0-4399-9c01-d8a50f9d1ac6",
+                "createdAt": "2025-09-08T11:02:35.602000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "995bf69b-7aa1-431a-834a-8a5ee1501b14",
+                "createdAt": "2025-09-08T11:02:13.922000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "bb333bee-18b1-4098-92ed-e82eb54ca852",
+                "createdAt": "2025-09-08T11:01:42.114000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 5f7ee381dff4426a9c29176006934b18)."
+            },
+            {
+                "id": "33ab5eb2-0f9a-4256-a406-f5b940f0dd4f",
+                "createdAt": "2025-09-08T10:58:37.290000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "32c52352-99a2-4d9c-b98f-456c5963b24b",
+                "createdAt": "2025-09-08T10:58:37.210000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "2870fc83-689f-4229-ba4b-c8f51ee698d2",
+                "createdAt": "2025-09-08T10:58:37.205000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "97070068-e111-4efa-bc00-4cd398431206",
+                "createdAt": "2025-09-08T10:58:14.169000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "8df6f2e4-6fc5-436a-a386-ca17f6124b04",
+                "createdAt": "2025-09-08T10:57:43.138000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 89b9f25684c140ddbac58cb5d42ff31e)."
+            },
+            {
+                "id": "8578b12d-5cc9-4abd-8add-a5d387ddda5b",
+                "createdAt": "2025-09-08T10:57:30.312000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "8e09089f-e12d-48bf-add3-8c37c00a94a6",
+                "createdAt": "2025-09-08T10:57:20.858000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "66efbfff-87f7-486c-806a-4764ae6f9a7e",
+                "createdAt": "2025-09-08T10:57:08.917000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "8db537fa-2ba7-43dd-9231-26f69027a7e4",
+                "createdAt": "2025-09-08T10:56:36.092000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task e2f3488a685e464ca46074576ababdf2)."
+            },
+            {
+                "id": "5d6fa4e5-809b-4906-b4de-74f21c1af0d1",
+                "createdAt": "2025-09-08T10:56:25.107000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "441d1719-d5bb-4781-8b75-2276e007a966",
+                "createdAt": "2025-09-08T10:56:25.018000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "d64b8a1b-ab8d-4c98-900f-d93187a8976e",
+                "createdAt": "2025-09-08T10:56:25.013000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "fdd23413-5e40-481f-908d-7b67dbbae5f3",
+                "createdAt": "2025-09-08T10:55:53.922000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "ddcdb98b-2b99-4b4f-adf9-8051f8128f10",
+                "createdAt": "2025-09-08T10:55:31.835000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task e2365e3de58e45f8930eb7ac309045fa)."
+            },
+            {
+                "id": "54f25225-5a56-47d8-8aa3-f278dba3d269",
+                "createdAt": "2025-09-08T10:51:18.965000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "ef186717-fd0c-47af-8607-5b41aab07a72",
+                "createdAt": "2025-09-08T10:51:18.893000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/0774478469415758129) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "991d595f-7601-4e16-aebf-e3a4073b76f2",
+                "createdAt": "2025-09-08T10:51:18.887000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "f9fb9c6d-11e3-4e32-9370-76b45e6e7235",
+                "createdAt": "2025-09-08T10:51:09.567000+00:00",
+                "message": "(service job-portal-api) has stopped 1 running tasks: (task 800cb0649996435b928d99a15ac84f4c)."
+            },
+            {
+                "id": "df5d7cbb-46d9-47f9-8835-0ef8636e51e7",
+                "createdAt": "2025-09-08T10:51:09.522000+00:00",
+                "message": "(service job-portal-api) (task 800cb0649996435b928d99a15ac84f4c) (port 8080) is unhealthy in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486) due to (reason Request timed out)."
+            },
+            {
+                "id": "47f3b62a-8fbf-4dbd-9a2c-60505753baeb",
+                "createdAt": "2025-09-08T10:51:08.715000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "17b40080-9633-4119-b2a1-a206c4e9d8c4",
+                "createdAt": "2025-09-08T10:51:08.637000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "23854513-99b8-4390-ad4c-f4becae21816",
+                "createdAt": "2025-09-08T10:51:08.631000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "88f8d286-d8b2-47b8-8252-e64b86a001b2",
+                "createdAt": "2025-09-08T10:50:46.610000+00:00",
+                "message": "(service job-portal-api) registered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "fa8b7095-c2a1-41b2-a207-68fa04a2afc0",
+                "createdAt": "2025-09-08T10:50:24.910000+00:00",
+                "message": "(service job-portal-api) has started 1 tasks: (task 75748384e693435f88031fea8b905221)."
+            },
+            {
+                "id": "6a58f1e8-f889-4f5c-9bb6-afec12ca642a",
+                "createdAt": "2025-09-08T10:50:14.230000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            },
+            {
+                "id": "8adf22ec-eaca-4de2-8262-2f77ca30aa1d",
+                "createdAt": "2025-09-08T10:50:14.165000+00:00",
+                "message": "(service job-portal-api, taskSet ecs-svc/8750210613324865731) has begun draining connections on 1 tasks."
+            },
+            {
+                "id": "97fca5fc-5212-48c7-910e-4b3e91f645d4",
+                "createdAt": "2025-09-08T10:50:14.160000+00:00",
+                "message": "(service job-portal-api) deregistered 1 targets in (target-group arn:aws:elasticloadbalancing:eu-north-1:501123610449:targetgroup/job-portal-tg/e67c134e451d4486)"
+            }
+        ],
+        "createdAt": "2025-09-08T10:32:24.493000+00:00",
+        "placementConstraints": [],
+        "placementStrategy": [],
+        "networkConfiguration": {
+            "awsvpcConfiguration": {
+                "subnets": [
+                    "subnet-04767bcfd1d077148",
+                    "subnet-0a4327600eb582d46"
+                ],
+                "securityGroups": [
+                    "sg-01be21c061c80e5c5"
+                ],
+                "assignPublicIp": "DISABLED"
+            }
+        },
+        "healthCheckGracePeriodSeconds": 0,
+        "schedulingStrategy": "REPLICA",
+        "deploymentController": {
+            "type": "ECS"
+        },
+        "createdBy": "arn:aws:iam::501123610449:user/otniel64",
+        "enableECSManagedTags": false,
+        "propagateTags": "NONE",
+        "enableExecuteCommand": false,
+        "availabilityZoneRebalancing": "ENABLED"
+    }
+}

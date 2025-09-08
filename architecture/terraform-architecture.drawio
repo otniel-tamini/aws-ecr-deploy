@@ -1,198 +1,150 @@
-<mxfile host="app.diagrams.net" modified="2025-09-08T00:00:00.000Z" agent="drawio-desktop" version="22.1.0" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
   <diagram id="terraform-arch" name="Terraform AWS Architecture">
-    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="1895" dy="1225" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-
-        <!-- GitHub Actions / CI -->
-        <mxCell id="cicdBox" value="CI/CD Pipeline" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontColor=#000000;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="280" height="200" as="geometry"/>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cicdBox" value="CI/CD Pipeline" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontColor=#000000;swimlaneFillColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="280" height="200" as="geometry" />
         </mxCell>
-
-        <!-- GitHub Actions -->
-        <mxCell id="github" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn-icons-png.flaticon.com/512/25/25231.png" vertex="1" parent="cicdBox">
-          <mxGeometry x="40" y="40" width="48" height="48" as="geometry"/>
+        <mxCell id="github" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn-icons-png.flaticon.com/512/25/25231.png" parent="cicdBox" vertex="1">
+          <mxGeometry x="40" y="40" width="48" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="githubLabel" value="GitHub Actions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" vertex="1" parent="cicdBox">
-          <mxGeometry x="20" y="95" width="88" height="20" as="geometry"/>
+        <mxCell id="githubLabel" value="GitHub Actions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" parent="cicdBox" vertex="1">
+          <mxGeometry x="20" y="95" width="88" height="20" as="geometry" />
         </mxCell>
-
-        <!-- Terraform -->
-        <mxCell id="terraform" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://static-00.iconduck.com/assets.00/terraform-icon-1803x2048-hodrzd3t.png" vertex="1" parent="cicdBox">
-          <mxGeometry x="140" y="35" width="48" height="58" as="geometry"/>
+        <mxCell id="terraform" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://static-00.iconduck.com/assets.00/terraform-icon-1803x2048-hodrzd3t.png" parent="cicdBox" vertex="1">
+          <mxGeometry x="140" y="35" width="48" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="terraformLabel" value="Terraform" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" vertex="1" parent="cicdBox">
-          <mxGeometry x="125" y="100" width="78" height="20" as="geometry"/>
+        <mxCell id="terraformLabel" value="Terraform" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=10;" parent="cicdBox" vertex="1">
+          <mxGeometry x="125" y="100" width="78" height="20" as="geometry" />
         </mxCell>
-
-        <!-- AWS Account Container -->
-        <mxCell id="awsBox" value="AWS Account (eu-north-1)" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontColor=#000000;swimlaneFillColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="360" y="40" width="1200" height="800" as="geometry"/>
+        <mxCell id="awsBox" value="AWS Account (eu-north-1)" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontColor=#000000;swimlaneFillColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="360" y="40" width="1200" height="800" as="geometry" />
         </mxCell>
-
-        <!-- IAM Section -->
-        <mxCell id="iamBox" value="IAM" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;swimlaneFillColor=#ffffff;" vertex="1" parent="awsBox">
-          <mxGeometry x="40" y="40" width="200" height="120" as="geometry"/>
+        <mxCell id="iamBox" value="IAM" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;swimlaneFillColor=#ffffff;" parent="awsBox" vertex="1">
+          <mxGeometry x="40" y="40" width="200" height="120" as="geometry" />
         </mxCell>
-
-        <mxCell id="iamRole" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.iam_role;fillColor=#F58534;gradientColor=none;" vertex="1" parent="iamBox">
-          <mxGeometry x="30" y="30" width="50" height="50" as="geometry"/>
+        <mxCell id="iamRoleLabel" value="ECS Task Role" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="iamBox" vertex="1">
+          <mxGeometry x="15" y="85" width="80" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="iamRoleLabel" value="ECS Task Role" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="iamBox">
-          <mxGeometry x="15" y="85" width="80" height="20" as="geometry"/>
+        <mxCell id="iamPolicy" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.iam;fillColor=#759C3E;gradientColor=none;" parent="iamBox" vertex="1">
+          <mxGeometry x="120" y="30" width="50" height="50" as="geometry" />
         </mxCell>
-
-        <mxCell id="iamPolicy" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.iam;fillColor=#759C3E;gradientColor=none;" vertex="1" parent="iamBox">
-          <mxGeometry x="120" y="30" width="50" height="50" as="geometry"/>
+        <mxCell id="iamPolicyLabel" value="GitHub OIDC" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="iamBox" vertex="1">
+          <mxGeometry x="105" y="85" width="80" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="iamPolicyLabel" value="GitHub OIDC" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="iamBox">
-          <mxGeometry x="105" y="85" width="80" height="20" as="geometry"/>
+        <mxCell id="56oyNkGUzFpOdw3FJRYo-5" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.role;" vertex="1" parent="iamBox">
+          <mxGeometry x="15" y="33" width="78" height="44" as="geometry" />
         </mxCell>
-
-        <!-- VPC Container -->
-        <mxCell id="vpcBox" value="VPC (10.0.0.0/16)" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;swimlaneFillColor=#ffffff;" vertex="1" parent="awsBox">
-          <mxGeometry x="280" y="40" width="880" height="600" as="geometry"/>
+        <mxCell id="vpcBox" value="VPC (10.0.0.0/16)" style="swimlane;fontStyle=1;rounded=0;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;swimlaneFillColor=#ffffff;" parent="awsBox" vertex="1">
+          <mxGeometry x="280" y="40" width="880" height="600" as="geometry" />
         </mxCell>
-
-        <!-- Public Subnets -->
-        <mxCell id="publicSubnetA" value="Public Subnet A (10.0.1.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;swimlaneFillColor=#ffffff;" vertex="1" parent="vpcBox">
-          <mxGeometry x="40" y="40" width="380" height="180" as="geometry"/>
+        <mxCell id="publicSubnetA" value="Public Subnet A (10.0.1.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;swimlaneFillColor=#ffffff;" parent="vpcBox" vertex="1">
+          <mxGeometry x="40" y="40" width="380" height="180" as="geometry" />
         </mxCell>
-
-        <!-- ALB -->
-        <mxCell id="alb" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.application_load_balancer;fillColor=#F58534;gradientColor=none;" vertex="1" parent="publicSubnetA">
-          <mxGeometry x="60" y="40" width="69" height="72" as="geometry"/>
+        <mxCell id="alb" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.application_load_balancer;fillColor=#F58534;gradientColor=none;" parent="publicSubnetA" vertex="1">
+          <mxGeometry x="60" y="40" width="69" height="72" as="geometry" />
         </mxCell>
-        <mxCell id="albLabel" value="Application\nLoad Balancer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="publicSubnetA">
-          <mxGeometry x="45" y="120" width="100" height="30" as="geometry"/>
+        <mxCell id="albLabel" value="Application\nLoad Balancer" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="publicSubnetA" vertex="1">
+          <mxGeometry x="45" y="120" width="100" height="30" as="geometry" />
         </mxCell>
-
-        <!-- NAT Gateway -->
-        <mxCell id="nat" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.nat_gateway;fillColor=#F58534;gradientColor=none;" vertex="1" parent="publicSubnetA">
-          <mxGeometry x="220" y="50" width="50" height="50" as="geometry"/>
+        <mxCell id="natLabel" value="NAT Gateway" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="publicSubnetA" vertex="1">
+          <mxGeometry x="195" y="110" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="natLabel" value="NAT Gateway" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="publicSubnetA">
-          <mxGeometry x="195" y="110" width="100" height="20" as="geometry"/>
+        <mxCell id="56oyNkGUzFpOdw3FJRYo-1" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.nat_gateway;" vertex="1" parent="publicSubnetA">
+          <mxGeometry x="230" y="47" width="58" height="58" as="geometry" />
         </mxCell>
-
-        <mxCell id="publicSubnetB" value="Public Subnet B (10.0.2.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;swimlaneFillColor=#ffffff;" vertex="1" parent="vpcBox">
-          <mxGeometry x="460" y="40" width="380" height="180" as="geometry"/>
+        <mxCell id="publicSubnetB" value="Public Subnet B (10.0.2.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=10;swimlaneFillColor=#ffffff;" parent="vpcBox" vertex="1">
+          <mxGeometry x="460" y="40" width="380" height="180" as="geometry" />
         </mxCell>
-
-        <!-- NAT Gateway B -->
-        <mxCell id="natB" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.nat_gateway;fillColor=#F58534;gradientColor=none;" vertex="1" parent="publicSubnetB">
-          <mxGeometry x="60" y="50" width="50" height="50" as="geometry"/>
+        <mxCell id="natBLabel" value="NAT Gateway B" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="publicSubnetB" vertex="1">
+          <mxGeometry x="35" y="110" width="100" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="natBLabel" value="NAT Gateway B" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="publicSubnetB">
-          <mxGeometry x="35" y="110" width="100" height="20" as="geometry"/>
+        <mxCell id="56oyNkGUzFpOdw3FJRYo-2" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#8C4FFF;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.nat_gateway;" vertex="1" parent="publicSubnetB">
+          <mxGeometry x="56" y="52" width="58" height="58" as="geometry" />
         </mxCell>
-
-        <!-- Private Subnets -->
-        <mxCell id="privateSubnetA" value="Private Subnet A (10.0.10.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;swimlaneFillColor=#ffffff;" vertex="1" parent="vpcBox">
-          <mxGeometry x="40" y="260" width="380" height="320" as="geometry"/>
+        <mxCell id="privateSubnetA" value="Private Subnet A (10.0.10.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;swimlaneFillColor=#ffffff;" parent="vpcBox" vertex="1">
+          <mxGeometry x="40" y="260" width="380" height="320" as="geometry" />
         </mxCell>
-
-        <!-- ECS Fargate -->
-        <mxCell id="ecs" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" vertex="1" parent="privateSubnetA">
-          <mxGeometry x="60" y="40" width="76.5" height="93" as="geometry"/>
+        <mxCell id="ecs" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" parent="privateSubnetA" vertex="1">
+          <mxGeometry x="60" y="40" width="76.5" height="93" as="geometry" />
         </mxCell>
-        <mxCell id="ecsLabel" value="ECS Fargate\nCluster" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="privateSubnetA">
-          <mxGeometry x="45" y="140" width="107" height="30" as="geometry"/>
+        <mxCell id="ecsLabel" value="ECS Fargate\nCluster" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="privateSubnetA" vertex="1">
+          <mxGeometry x="45" y="140" width="107" height="30" as="geometry" />
         </mxCell>
-
-        <!-- DocumentDB -->
-        <mxCell id="docdb" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.documentdb;fillColor=#2E27AD;gradientColor=none;" vertex="1" parent="privateSubnetA">
-          <mxGeometry x="220" y="200" width="76.5" height="93" as="geometry"/>
+        <mxCell id="docdbLabel" value="DocumentDB\nCluster" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="privateSubnetA" vertex="1">
+          <mxGeometry x="205" y="290" width="107" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="docdbLabel" value="DocumentDB\nCluster" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="privateSubnetA">
-          <mxGeometry x="205" y="290" width="107" height="30" as="geometry"/>
+        <mxCell id="56oyNkGUzFpOdw3FJRYo-3" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.documentdb_with_mongodb_compatibility;" vertex="1" parent="privateSubnetA">
+          <mxGeometry x="219.5" y="190" width="78" height="78" as="geometry" />
         </mxCell>
-
-        <mxCell id="privateSubnetB" value="Private Subnet B (10.0.11.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;swimlaneFillColor=#ffffff;" vertex="1" parent="vpcBox">
-          <mxGeometry x="460" y="260" width="380" height="320" as="geometry"/>
+        <mxCell id="privateSubnetB" value="Private Subnet B (10.0.11.0/24)" style="swimlane;fontStyle=0;rounded=0;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;swimlaneFillColor=#ffffff;" parent="vpcBox" vertex="1">
+          <mxGeometry x="460" y="260" width="380" height="320" as="geometry" />
         </mxCell>
-
-        <!-- ECS Fargate B -->
-        <mxCell id="ecsB" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" vertex="1" parent="privateSubnetB">
-          <mxGeometry x="60" y="40" width="76.5" height="93" as="geometry"/>
+        <mxCell id="ecsB" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" parent="privateSubnetB" vertex="1">
+          <mxGeometry x="60" y="40" width="76.5" height="93" as="geometry" />
         </mxCell>
-        <mxCell id="ecsBLabel" value="ECS Fargate\nTask" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="privateSubnetB">
-          <mxGeometry x="45" y="140" width="107" height="30" as="geometry"/>
+        <mxCell id="ecsBLabel" value="ECS Fargate\nTask" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" parent="privateSubnetB" vertex="1">
+          <mxGeometry x="45" y="140" width="107" height="30" as="geometry" />
         </mxCell>
-
-        <!-- ECR Outside VPC -->
-        <mxCell id="ecr" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecr;fillColor=#F58534;gradientColor=none;" vertex="1" parent="awsBox">
-          <mxGeometry x="40" y="200" width="76.5" height="93" as="geometry"/>
+        <mxCell id="ecr" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecr;fillColor=#F58534;gradientColor=none;" parent="awsBox" vertex="1">
+          <mxGeometry x="40" y="200" width="76.5" height="93" as="geometry" />
         </mxCell>
-        <mxCell id="ecrLabel" value="Amazon ECR\n(Container Registry)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="awsBox">
-          <mxGeometry x="25" y="300" width="107" height="30" as="geometry"/>
+        <mxCell id="ecrLabel" value="Amazon ECR\n(Container Registry)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" parent="awsBox" vertex="1">
+          <mxGeometry x="25" y="300" width="107" height="30" as="geometry" />
         </mxCell>
-
-        <!-- S3 -->
-        <mxCell id="s3" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.s3;fillColor=#E05243;gradientColor=none;" vertex="1" parent="awsBox">
-          <mxGeometry x="40" y="360" width="76.5" height="93" as="geometry"/>
+        <mxCell id="s3" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.s3;fillColor=#E05243;gradientColor=none;" parent="awsBox" vertex="1">
+          <mxGeometry x="40" y="360" width="76.5" height="93" as="geometry" />
         </mxCell>
-        <mxCell id="s3Label" value="S3 Bucket\n(Frontend)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="awsBox">
-          <mxGeometry x="25" y="460" width="107" height="30" as="geometry"/>
+        <mxCell id="s3Label" value="S3 Bucket\n(Frontend)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" parent="awsBox" vertex="1">
+          <mxGeometry x="25" y="460" width="107" height="30" as="geometry" />
         </mxCell>
-
-        <!-- CloudWatch -->
-        <mxCell id="cloudwatch" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.cloudwatch;fillColor=#759C3E;gradientColor=none;" vertex="1" parent="awsBox">
-          <mxGeometry x="40" y="520" width="76.5" height="93" as="geometry"/>
+        <mxCell id="cloudwatch" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.cloudwatch;fillColor=#759C3E;gradientColor=none;" parent="awsBox" vertex="1">
+          <mxGeometry x="40" y="520" width="76.5" height="93" as="geometry" />
         </mxCell>
-        <mxCell id="cloudwatchLabel" value="CloudWatch\nLogs" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" vertex="1" parent="awsBox">
-          <mxGeometry x="25" y="620" width="107" height="30" as="geometry"/>
+        <mxCell id="cloudwatchLabel" value="CloudWatch\nLogs" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;" parent="awsBox" vertex="1">
+          <mxGeometry x="25" y="620" width="107" height="30" as="geometry" />
         </mxCell>
-
-        <!-- Terraform arrows pointing to AWS resources -->
-        <mxCell id="terraformToIam" edge="1" parent="1" source="terraform" target="iamRole" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="terraformToIam" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="terraform" target="56oyNkGUzFpOdw3FJRYo-5" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="135" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-
-        <mxCell id="terraformToVpc" edge="1" parent="1" source="terraform" target="vpcBox" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="terraformToVpc" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="terraform" target="vpcBox" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="terraformToEcr" edge="1" parent="1" source="terraform" target="ecr" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="terraformToEcr" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="terraform" target="ecr" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="terraformToS3" edge="1" parent="1" source="terraform" target="s3" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="terraformToS3" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="terraform" target="s3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="terraformToCloudwatch" edge="1" parent="1" source="terraform" target="cloudwatch" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="terraformToCloudwatch" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#7F39FB;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="terraform" target="cloudwatch" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- GitHub Actions to Terraform -->
-        <mxCell id="githubToTerraform" edge="1" parent="1" source="github" target="terraform" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#1BA1E2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="githubToTerraform" style="endArrow=block;html=1;strokeWidth=3;strokeColor=#1BA1E2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="github" target="terraform" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <!-- Service connections -->
-        <mxCell id="albToEcs" edge="1" parent="1" source="alb" target="ecs" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="albToEcs" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="alb" target="ecs" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="albToEcsB" edge="1" parent="1" source="alb" target="ecsB" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;exitX=1;exitY=1;entryX=0;entryY=0;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="albToEcsB" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#82b366;exitX=1;exitY=1;entryX=0;entryY=0;" parent="1" source="alb" target="ecsB" edge="1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
-        <mxCell id="ecsToDocdb" edge="1" parent="1" source="ecs" target="docdb" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;exitX=1;exitY=1;entryX=0;entryY=0;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="ecsToDocdb" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;exitX=1;exitY=1;entryX=0;entryY=0;" parent="1" source="ecs" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="900" y="540" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-
-        <mxCell id="ecsBToDocdb" edge="1" parent="1" source="ecsB" target="docdb" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;exitX=0;exitY=1;entryX=1;entryY=0;">
-          <mxGeometry relative="1" as="geometry"/>
+        <mxCell id="ecsBToDocdb" style="endArrow=block;html=1;strokeWidth=2;strokeColor=#d79b00;exitX=0;exitY=1;entryX=1;entryY=0;" parent="1" source="ecsB" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="976.5" y="540" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-
-        <!-- Labels for key components -->
-        <mxCell id="terraformNote" value="Terraform provisions all AWS infrastructure:\n• VPC with public/private subnets\n• ALB + Target Groups\n• ECS Fargate cluster and service\n• DocumentDB cluster\n• IAM roles and policies\n• CloudWatch log groups\n• ECR repository\n• S3 bucket for frontend" style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="1">
-          <mxGeometry x="40" y="270" width="280" height="150" as="geometry"/>
+        <mxCell id="terraformNote" value="Terraform provisions all AWS infrastructure:\n• VPC with public/private subnets\n• ALB + Target Groups\n• ECS Fargate cluster and service\n• DocumentDB cluster\n• IAM roles and policies\n• CloudWatch log groups\n• ECR repository\n• S3 bucket for frontend" style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="270" width="280" height="150" as="geometry" />
         </mxCell>
-
       </root>
     </mxGraphModel>
   </diagram>

@@ -47,9 +47,32 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           role-session-name: gha-frontend-s3
 
-      - name: Sync to S3
+      - name: Sync static assets (immutable)
         run: |
-          aws s3 sync frontend/dist s3://$S3_BUCKET --delete --acl public-read --cache-control max-age=31536000,public
+          aws s3 sync frontend/dist s3://$S3_BUCKET \
+            --delete \
+            --cache-control max-age=31536000,public \
+            --exclude "index.html" \
+            --exclude "*.html"
+
+      - name: Upload HTML entrypoints (no-cache)
+        run: |
+          # Main SPA entry
+          if [ -f frontend/dist/index.html ]; then
+            aws s3 cp frontend/dist/index.html s3://$S3_BUCKET/index.html \
+              --cache-control no-cache,public \
+              --content-type text/html;
+          fi
+          # Any other HTML files
+          if compgen -G "frontend/dist/*.html" > /dev/null; then
+            for f in frontend/dist/*.html; do
+              bn=$(basename "$f")
+              [ "$bn" = "index.html" ] && continue
+              aws s3 cp "$f" "s3://$S3_BUCKET/$bn" \
+                --cache-control no-cache,public \
+                --content-type text/html;
+            done
+          fi
 
       - name: Invalidate CloudFront (optional)
         if: vars.CLOUDFRONT_DISTRIBUTION_ID != ''

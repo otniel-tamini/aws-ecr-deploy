@@ -194,10 +194,10 @@ resource "aws_ecs_task_definition" "api" {
 			essential = true
 			portMappings = [{ containerPort = 8080, protocol = "tcp" }]
 			environment = [
-				{ name = "PORT", value = "8080" },
-				{ name = "MONGODB_DATABASE", value = "job_portal_db" },
-				{ name = "ALLOWED_ORIGINS", value = var.allowed_origins },
-				{ name = "MONGODB_URI", value = "mongodb://${var.docdb_username}:${var.docdb_password}@${aws_docdb_cluster.this.endpoint}:27017/job_portal_db?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false" }
+				{ name = "SERVER_PORT", value = "8080" },
+				{ name = "SPRING_DATA_MONGODB_DATABASE", value = "job_portal_db" },
+				{ name = "APP_CORS_ALLOWED_ORIGINS", value = var.allowed_origins },
+				{ name = "SPRING_DATA_MONGODB_URI", value = "mongodb://${var.docdb_username}:${var.docdb_password}@${aws_docdb_cluster.this.endpoint}:27017/job_portal_db?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false" }
 			]
 			logConfiguration = {
 				logDriver = "awslogs"

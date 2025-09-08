@@ -1,0 +1,50 @@
+%% High-level architecture for Job Portal on AWS (Mermaid)
+%% Import this into diagrams.net (File → Import) or view with Mermaid editors
+
+flowchart LR
+  subgraph Internet
+    U[User Browser]
+  end
+
+  subgraph AWS[Amazon Web Services - eu-north-1]
+    subgraph Net[VPC]
+      ALB[Application Load Balancer\n:80]
+      subgraph PublicSubnets[Public Subnets]
+        NAT1[NAT GW A]
+        NAT2[NAT GW B]
+      end
+      subgraph PrivateSubnets[Private Subnets]
+        ECS1[ECS Fargate Task 1\nBackend API :8080]
+        ECS2[ECS Fargate Task 2\nBackend API :8080]
+        DOCDB[(Amazon DocumentDB\nCluster rs0)]
+      end
+    end
+
+    subgraph Storage[Static Hosting]
+      S3[(S3 Bucket\nFrontend Website)]
+      CF[(CloudFront CDN):::optional]
+    end
+  end
+
+  classDef optional fill:#f9f9f9,stroke:#bbb,color:#666
+
+  %% Frontend path
+  U -->|HTTPS| CF
+  CF -->|HTTP/HTTPS| S3
+  %% If no CloudFront, connect user directly
+  U -. optional .->|HTTP| S3
+
+  %% API path
+  U -->|HTTPS| ALB
+  ALB -->|HTTP :80 -> :8080| ECS1
+  ALB -->|HTTP :80 -> :8080| ECS2
+  ECS1 -->|TLS :27017| DOCDB
+  ECS2 -->|TLS :27017| DOCDB
+
+  %% Egress for tasks
+  ECS1 --> NAT1
+  ECS2 --> NAT2
+
+  %% Notes
+  note over ALB: Health check: /actuator/health/liveness
+  note over DOCDB: TLS with AWS RDS/DocDB CA

@@ -1,0 +1,107 @@
+<mxfile host="app.diagrams.net" modified="2025-09-08T00:00:00.000Z" agent="drawio-desktop" version="22.1.0" type="device">
+  <diagram id="arch" name="AWS Architecture">
+    <mxGraphModel dx="1280" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Internet / User / CDN / S3 -->
+        <mxCell id="user" value="User" style="shape=mxgraph.aws4.user;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="cf" value="Amazon CloudFront" style="shape=mxgraph.aws4.cloudfront;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="50" width="80" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="Amazon S3 (Static Website)" style="shape=mxgraph.aws4.s3_bucket;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="50" width="90" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- VPC container -->
+        <mxCell id="vpc" value="VPC (eu-north-1)" style="shape=mxgraph.aws4.vpc;html=1;container=1;pointerEvents=0;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="170" width="1200" height="620" as="geometry"/>
+        </mxCell>
+
+        <!-- Public Subnets -->
+        <mxCell id="pubA" value="Public Subnet A" style="shape=mxgraph.aws4.public_subnet;html=1;container=1;" vertex="1" parent="vpc">
+          <mxGeometry x="20" y="20" width="560" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="pubB" value="Public Subnet B" style="shape=mxgraph.aws4.public_subnet;html=1;container=1;" vertex="1" parent="vpc">
+          <mxGeometry x="620" y="20" width="560" height="260" as="geometry"/>
+        </mxCell>
+
+        <!-- Private Subnets -->
+        <mxCell id="privA" value="Private Subnet A" style="shape=mxgraph.aws4.private_subnet;html=1;container=1;" vertex="1" parent="vpc">
+          <mxGeometry x="20" y="320" width="560" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="privB" value="Private Subnet B" style="shape=mxgraph.aws4.private_subnet;html=1;container=1;" vertex="1" parent="vpc">
+          <mxGeometry x="620" y="320" width="560" height="260" as="geometry"/>
+        </mxCell>
+
+        <!-- NAT Gateways in public subnets -->
+        <mxCell id="natA" value="NAT Gateway A" style="shape=mxgraph.aws4.nat_gateway;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="pubA">
+          <mxGeometry x="440" y="150" width="60" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="natB" value="NAT Gateway B" style="shape=mxgraph.aws4.nat_gateway;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="pubB">
+          <mxGeometry x="440" y="150" width="60" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ALB spanning public subnets (placed at VPC level for simplicity) -->
+        <mxCell id="alb" value="Application Load Balancer (:80)" style="shape=mxgraph.aws4.application_load_balancer;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="vpc">
+          <mxGeometry x="560" y="110" width="80" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- ECS Fargate Service (2 tasks) in private subnets -->
+        <mxCell id="ecsA" value="ECS Fargate Task\nBackend API :8080" style="shape=mxgraph.aws4.ecs;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="privA">
+          <mxGeometry x="140" y="100" width="80" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="ecsB" value="ECS Fargate Task\nBackend API :8080" style="shape=mxgraph.aws4.ecs;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="privB">
+          <mxGeometry x="140" y="100" width="80" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Amazon DocumentDB in private subnet -->
+        <mxCell id="docdb" value="Amazon DocumentDB\n(rs0) TLS:27017" style="shape=mxgraph.aws4.documentdb;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="privB">
+          <mxGeometry x="360" y="90" width="90" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges: Frontend path -->
+        <mxCell id="edge_user_cf" edge="1" parent="1" source="user" target="cf" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_cf_s3" edge="1" parent="1" source="cf" target="s3" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges: API path -->
+        <mxCell id="edge_user_alb" edge="1" parent="1" source="user" target="alb" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_alb_ecsA" edge="1" parent="1" source="alb" target="ecsA" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_alb_ecsB" edge="1" parent="1" source="alb" target="ecsB" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_ecsA_docdb" edge="1" parent="1" source="ecsA" target="docdb" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_ecsB_docdb" edge="1" parent="1" source="ecsB" target="docdb" style="endArrow=block;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges: ECS egress via NAT -->
+        <mxCell id="edge_ecsA_natA" edge="1" parent="1" source="ecsA" target="natA" style="endArrow=block;dashed=1;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edge_ecsB_natB" edge="1" parent="1" source="ecsB" target="natB" style="endArrow=block;dashed=1;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Note: health check -->
+        <mxCell id="note1" value="ALB health: /actuator/health/liveness" style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#fff2a8;strokeColor=#d6b656;" vertex="1" parent="vpc">
+          <mxGeometry x="980" y="100" width="180" height="50" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
